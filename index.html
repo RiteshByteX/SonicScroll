@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SonicScroll — Hindi Story Audio Proofreader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="bg-blob blob-3"></div>
+
+  <div class="app-shell">
+
+    <main class="editor-panel">
+      <header class="editor-header">
+        <div class="brand-block">
+          <div class="brand-icon">🎙️</div>
+          <div>
+            <h1 class="brand">SonicScroll</h1>
+            <p class="tagline">Paste Hindi text · Hear it read aloud · Fix typos on the fly</p>
+          </div>
+        </div>
+        <div class="counter-badges">
+          <span class="badge"><strong id="wordCount">0</strong> words</span>
+          <span class="badge"><strong id="charCount">0</strong> chars</span>
+          <span class="badge badge-accent"><strong id="chunkCountBadge">0</strong> sentences</span>
+        </div>
+      </header>
+
+      <div class="editor-body">
+        <textarea
+          id="storyText"
+          class="story-input"
+          spellcheck="false"
+          lang="hi"
+          placeholder="Paste your Hindi story here… (up to 5,000 words)"
+        >राम और श्याम दोनों भाई थे। वे एक छोटे से गाँव में रहते थे। गाँव के चारों ओर हरे-भरे खेत और ऊँचे पेड़ थे। एक दिन सुबह-सुबह दोनों भाई नदी किनारे घूमने गए। नदी का पानी बहुत साफ़ और ठंडा था। वहाँ उन्होंने कुछ बत्तखें तैरती हुई देखीं। राम ने कहा, "देखो भैया, कितनी सुंदर हैं ये बत्तखें!" श्याम मुस्कुराया और बोला, "हाँ, और ये कितनी शांति से तैर रही हैं।" तभी दूर से एक बूढ़े साधु आते दिखे। वे दोनों भाइयों के पास आए और बोले, "बच्चों, जीवन में शांति सबसे बड़ा धन है।" दोनों भाइयों ने सिर झुकाया और उन्हें प्रणाम किया।</textarea>
+      </div>
+
+      <footer class="editor-footer">
+        <span class="footer-hint" id="hintText">Ready — press Play to listen</span>
+        <span class="footer-kbd">Ctrl + Enter = Play</span>
+      </footer>
+    </main>
+
+    <aside class="tools-panel">
+      <div class="tools-header">
+        <h2 class="tools-title">Controls</h2>
+        <span class="tools-badge" id="engineBadge">Hindi TTS</span>
+      </div>
+
+      <div class="tools-scroll">
+
+        <section class="tool-section">
+          <div class="section-label">Playback</div>
+          <button id="playBtn" class="play-btn">
+            <span class="play-icon" id="playIcon">▶</span>
+            <span id="playLabel">Start Listening</span>
+          </button>
+          <div class="sub-controls">
+            <button id="pauseBtn" class="sub-btn pause">⏸ Pause</button>
+            <button id="stopBtn"  class="sub-btn stop">⏹ Stop</button>
+          </div>
+        </section>
+
+        <section class="tool-section">
+          <div class="section-label">Position</div>
+          <div class="skip-row">
+            <button id="skipBackBtn"    class="skip-btn" title="Previous sentence">⏮</button>
+            <button id="skipBack10Btn"  class="skip-btn" title="-10 sentences">−10</button>
+            <button id="skipFwd10Btn"   class="skip-btn" title="+10 sentences">+10</button>
+            <button id="skipFwdBtn"     class="skip-btn" title="Next sentence">⏭</button>
+          </div>
+          <input type="range" id="seekSlider" class="seek-slider" min="0" max="100" value="0" step="1" />
+          <div class="seek-meta">
+            <span id="seekCurrent">0 / 0</span>
+            <span class="seek-percent" id="seekPercent">0%</span>
+          </div>
+        </section>
+
+        <section class="tool-section">
+          <div class="section-label">
+            Speed
+            <span class="pill" id="speedValue">2.00x</span>
+          </div>
+          <input type="range" id="speedSlider" class="speed-slider" min="0.5" max="3" step="0.05" value="2.0" />
+          <div class="tick-row">
+            <span>0.5x</span><span>1x</span><span>2x</span><span>3x</span>
+          </div>
+        </section>
+
+        <section class="tool-section">
+          <div class="section-label">Voice (Hindi preferred)</div>
+          <select id="voiceSelect" class="voice-select"></select>
+          <div class="voice-hint" id="voiceHint">Loading Hindi voices…</div>
+        </section>
+
+        <section class="tool-section status-section">
+          <div class="section-label">Status</div>
+          <div class="status-card" id="statusCard">
+            <span class="status-dot" id="statusDot"></span>
+            <div class="status-body">
+              <div class="status-line" id="statusBadge">READY</div>
+              <div class="status-line muted" id="statusDetail">Paste text and press Play</div>
+            </div>
+          </div>
+          <div class="status-meta" id="statusMeta">Sentence 0 / 0</div>
+        </section>
+
+      </div>
+    </aside>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
