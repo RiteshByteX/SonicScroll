@@ -53,4 +53,4 @@ Everything happens **inside your browser tab**. Nothing leaves your device.
 
 ## 🌐 Live Demo
 
-Deploy it yourself in 2 minutes (see [Deployment](#-deployment)) or host it on any static host.
+Deploy it yourself in 2 minutes (see [Deployment](https://riteshbytex.github.io/SonicScroll/)) or host it on any static host.
